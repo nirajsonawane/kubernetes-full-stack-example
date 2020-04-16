@@ -5,8 +5,7 @@ const Students = props => {
   const initialTutorialState = {
     id: null,
     firstName: "",
-    lastName: "",
-    published: false
+    lastName: ""
   };
   const [currentStudent, setCurrentStudent] = useState(initialTutorialState);
   const [message, setMessage] = useState("");
@@ -38,7 +37,6 @@ const Students = props => {
       id: currentStudent.id,
       firstName: currentStudent.firstName,
       lastName: currentStudent.lastName,
-      published: status
     };
 
     TutorialDataService.update(currentStudent.id, data)
@@ -102,29 +100,8 @@ const Students = props => {
               />
             </div>
 
-            <div className="form-group">
-              <label>
-                <strong>Status:</strong>
-              </label>
-              {currentStudent.published ? "Published" : "Pending"}
-            </div>
-          </form>
 
-          {currentStudent.published ? (
-            <button
-              className="badge badge-primary mr-2"
-              onClick={() => updatePublished(false)}
-            >
-              UnPublish
-            </button>
-          ) : (
-            <button
-              className="badge badge-primary mr-2"
-              onClick={() => updatePublished(true)}
-            >
-              Publish
-            </button>
-          )}
+          </form>
 
           <button className="badge badge-danger mr-2" onClick={deleteStudent}>
             Delete

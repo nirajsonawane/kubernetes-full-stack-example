@@ -51,7 +51,7 @@ const StudentList = () => {
   };
 
   const findByFirstName = () => {
-    TutorialDataService.findByTitle(searchFirstName)
+    TutorialDataService.findByFirstName(searchFirstName)
       .then(response => {
         setStudents(response.data);
         console.log(response.data);
@@ -123,12 +123,6 @@ const StudentList = () => {
                 <strong>Last Name:</strong>
               </label>{" "}
               {currentStudent.lastName}
-            </div>
-            <div>
-              <label>
-                <strong>Status:</strong>
-              </label>{" "}
-              {currentStudent.published ? "Published" : "Pending"}
             </div>
 
             <Link

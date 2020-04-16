@@ -5,8 +5,7 @@ const AddStudent = () => {
   const initialStudentState = {
     id: null,
     firstName: "",
-    lastName: "",
-    published: false
+    lastName: ""
   };
   const [student, setStudent] = useState(initialStudentState);
   const [submitted, setSubmitted] = useState(false);
@@ -27,8 +26,7 @@ const AddStudent = () => {
         setStudent({
           id: response.data.id,
           firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          published: response.data.published
+          lastName: response.data.lastName
         });
         setSubmitted(true);
         console.log(response.data);
