@@ -4,8 +4,8 @@ import TutorialDataService from "../services/StudentService";
 const AddStudent = () => {
   const initialStudentState = {
     id: null,
-    title: "",
-    description: "",
+    firstName: "",
+    lastName: "",
     published: false
   };
   const [student, setStudent] = useState(initialStudentState);
@@ -18,16 +18,16 @@ const AddStudent = () => {
 
   const saveStudent = () => {
     var data = {
-      title: student.title,
-      description: student.description
+      firstName: student.firstName,
+      lastName: student.lastName
     };
 
     TutorialDataService.create(data)
       .then(response => {
         setStudent({
           id: response.data.id,
-          title: response.data.title,
-          description: response.data.description,
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
           published: response.data.published
         });
         setSubmitted(true);
@@ -59,11 +59,11 @@ const AddStudent = () => {
             <input
               type="text"
               className="form-control"
-              id="title"
+              id="firstName"
               required
-              value={student.title}
+              value={student.firstName}
               onChange={handleInputChange}
-              name="title"
+              name="firstName"
             />
           </div>
 
@@ -72,11 +72,11 @@ const AddStudent = () => {
             <input
               type="text"
               className="form-control"
-              id="description"
+              id="lastName"
               required
-              value={student.description}
+              value={student.lastName}
               onChange={handleInputChange}
-              name="description"
+              name="lastName"
             />
           </div>
 

@@ -4,16 +4,18 @@ import TutorialDataService from "../services/StudentService";
 const Students = props => {
   const initialTutorialState = {
     id: null,
-    title: "",
-    description: "",
+    firstName: "",
+    lastName: "",
     published: false
   };
   const [currentStudent, setCurrentStudent] = useState(initialTutorialState);
   const [message, setMessage] = useState("");
 
   const getStudent = id => {
+    console.log("Getting current studnet")
     TutorialDataService.get(id)
       .then(response => {
+        console.log(response);
         setCurrentStudent(response.data);
         console.log(response.data);
       })
@@ -34,8 +36,8 @@ const Students = props => {
   const updatePublished = status => {
     var data = {
       id: currentStudent.id,
-      title: currentStudent.title,
-      description: currentStudent.description,
+      firstName: currentStudent.firstName,
+      lastName: currentStudent.lastName,
       published: status
     };
 
@@ -82,9 +84,9 @@ const Students = props => {
               <input
                 type="text"
                 className="form-control"
-                id="title"
-                name="title"
-                value={currentStudent.title}
+                id="firstName"
+                name="firstName"
+                value={currentStudent.firstName}
                 onChange={handleInputChange}
               />
             </div>
@@ -93,9 +95,9 @@ const Students = props => {
               <input
                 type="text"
                 className="form-control"
-                id="description"
-                name="description"
-                value={currentStudent.description}
+                id="lastName"
+                name="lastName"
+                value={currentStudent.lastName}
                 onChange={handleInputChange}
               />
             </div>

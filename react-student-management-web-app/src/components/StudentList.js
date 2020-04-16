@@ -96,7 +96,7 @@ const StudentList = () => {
                 onClick={() => setActiveStudent(student, index)}
                 key={index}
               >
-                {student.title}
+                {student.firstName}
               </li>
             ))}
         </ul>
@@ -116,13 +116,13 @@ const StudentList = () => {
               <label>
                 <strong>First Name:</strong>
               </label>{" "}
-              {currentStudent.title}
+              {currentStudent.firstName}
             </div>
             <div>
               <label>
                 <strong>Last Name:</strong>
               </label>{" "}
-              {currentStudent.description}
+              {currentStudent.lastName}
             </div>
             <div>
               <label>
