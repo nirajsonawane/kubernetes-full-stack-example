@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-app-client
+spec:
+  selector:
+    matchLabels:
+      app: student-app-client
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: student-app-client
+    spec:
+      containers:
+        - name: student-app-client
+          image: nirajsonawane/student-app-client
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
