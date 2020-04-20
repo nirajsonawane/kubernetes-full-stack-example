@@ -1,0 +1,16 @@
+version: "3"
+services:
+  api-database:
+    image: mongo:3.2.4
+    container_name: "api-database"
+    ports:
+      - 27017:27017
+    command: --smallfiles
+  api:
+    image: nirajsonawane/student-app-api:0.0.1-SNAPSHOT
+    environment:
+      - SPRING_PROFILES_ACTIVE=local
+    ports:
+      - 8080:8080
+    links:
+      - api-database
