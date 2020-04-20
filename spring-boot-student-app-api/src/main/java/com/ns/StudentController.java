@@ -19,12 +19,12 @@ public class StudentController {
     private final StudentRepository studentRepository;
 
     @GetMapping("/students")
-    public ResponseEntity<List<Student>> getAllTutorials(@RequestParam(required = false) String firstName) {
+    public ResponseEntity<List<Student>> getAllStudents(@RequestParam(required = false) String firstName) {
         try {
             List<Student> students = new ArrayList<Student>();
 
             if (firstName == null)
-                students.addAll(studentRepository.getStudentList());
+                students.addAll(studentRepository.findAll());
             else
                 studentRepository.findByFirstNameContaining(firstName)
                         .forEach(students::add);
@@ -40,21 +40,19 @@ public class StudentController {
     }
 
     @GetMapping("/students/{id}")
-    public ResponseEntity<Student> getTutorialById(@PathVariable("id") long id) {
-        Optional<Student> tutorialData = studentRepository.findById(id);
-
-        if (tutorialData.isPresent()) {
-            return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
+    public ResponseEntity<Student> getStudentById(@PathVariable("id") long id) {
+        Optional<Student> studentData = studentRepository.findById(id);
+        if (studentData.isPresent()) {
+            return new ResponseEntity<>(studentData.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping("/students")
-    public ResponseEntity<Student> createTutorial(@RequestBody Student student) {
+    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
         try {
-            Student _student = studentRepository
-                    .save(new Student(student.getFirstName(), student.getLastName()));
+            Student _student = studentRepository.save(new Student(student.getFirstName(), student.getLastName()));
             return new ResponseEntity<>(_student, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
@@ -62,21 +60,21 @@ public class StudentController {
     }
 
     @PutMapping("/students/{id}")
-    public ResponseEntity<Student> updateTutorial(@PathVariable("id") long id, @RequestBody Student student) {
-        Optional<Student> tutorialData = studentRepository.findById(id);
+    public ResponseEntity<Student> updateStudent(@PathVariable("id") long id, @RequestBody Student student) {
+        Optional<Student> studentData = studentRepository.findById(id);
 
-        if (tutorialData.isPresent()) {
-            Student _student = tutorialData.get();
+        if (studentData.isPresent()) {
+            Student _student = studentData.get();
             _student.setFirstName(student.getFirstName());
             _student.setLastName(student.getLastName());
-            return new ResponseEntity<>(studentRepository.update(_student), HttpStatus.OK);
+            return new ResponseEntity<>(studentRepository.save(_student), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/students/{id}")
-    public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
+    public ResponseEntity<HttpStatus> deleteStudent(@PathVariable("id") long id) {
         try {
             studentRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -86,7 +84,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/students")
-    public ResponseEntity<HttpStatus> deleteAllTutorials() {
+    public ResponseEntity<HttpStatus> deleteAllStudents() {
         try {
             studentRepository.deleteAll();
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
