@@ -40,7 +40,7 @@ public class StudentController {
     }
 
     @GetMapping("/students/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable("id") long id) {
+    public ResponseEntity<Student> getStudentById(@PathVariable("id") String id) {
         Optional<Student> studentData = studentRepository.findById(id);
         if (studentData.isPresent()) {
             return new ResponseEntity<>(studentData.get(), HttpStatus.OK);
@@ -60,7 +60,7 @@ public class StudentController {
     }
 
     @PutMapping("/students/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable("id") long id, @RequestBody Student student) {
+    public ResponseEntity<Student> updateStudent(@PathVariable("id") String id, @RequestBody Student student) {
         Optional<Student> studentData = studentRepository.findById(id);
 
         if (studentData.isPresent()) {
@@ -74,7 +74,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/students/{id}")
-    public ResponseEntity<HttpStatus> deleteStudent(@PathVariable("id") long id) {
+    public ResponseEntity<HttpStatus> deleteStudent(@PathVariable("id") String id) {
         try {
             studentRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
