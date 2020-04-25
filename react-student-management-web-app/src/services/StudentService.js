@@ -1,6 +1,8 @@
 import http from "../http-common";
 
 const getAll = () => {
+  console.log("#############################################")
+  console.log(process.env.REACT_APP_STUDENT_APP_API_URL);
   return http.get("/students");
 };
 
@@ -13,6 +15,7 @@ const create = data => {
 };
 
 const update = (id, data) => {
+
   return http.put(`/students/${id}`, data);
 };
 
