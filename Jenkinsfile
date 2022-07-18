@@ -27,24 +27,5 @@ node {
         }
         sh 'docker push ndthuong/student-app-client'
     }
-    stage('Deploy React application on Kubernetes') {
-            sh 'helm install dieuthuong GIT_CREDENTIALS'
-    }
-    stage('Deploy MongoDB persistance layer on Kubernetes') {
-            sh 'helm install dieuthuong demo'
-    }
-    stage('Deploy Spring Boot Backend API on Kubernetes') {
-            sh 'helm install dieuthuong demo'
-    }
-    stage('Deploy Istio and expose services using Istio VirtualService and Gateway and connect frontend to backend') {
-            sh 'helm install dieuthuong demo'
-    }
-    stage('Deploy Prometheus and graffana and able to monitor using them') {
-            sh 'helm install dieuthuong demo'
-    }
-  
-
-
-    
     
 }
