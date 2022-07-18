@@ -27,20 +27,15 @@ node {
         }
         sh 'docker push ndthuong/student-app-client'
     }
-    stage('minikubestart'){
-        sh 'minikube delete'
-        sh 'minikube start --driver=none --kubernetes-version=v1.24.1'
-    }
+    
     stage("prometheus"){
         sh 'helm repo add prometheus-community https://prometheus-community.github.io/helm-charts'
         sh 'helm install prometheus prometheus-community/prometheus'
         sh 'kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-np'
-        sh 'minikube service prometheus-server-np'
     }
     stage("prometheus"){
         sh 'helm repo add bitnami https://charts.bitnami.com/bitnami'
         sh 'helm install grafana bitnami/grafana'
         sh 'kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-np'
-        sh 'minikube service grafana-np'
     }
 }
