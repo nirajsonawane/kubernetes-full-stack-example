@@ -27,5 +27,10 @@ node {
         }
         sh 'docker push ndthuong/student-app-client'
     }
-    
+    stage("install"){
+        sh 'helm delete thuongapp'
+        sh 'helm delete Prometheus'
+        sh 'helm delete Grafana'
+        sh 'helm install thuongapp'
+    }
 }
