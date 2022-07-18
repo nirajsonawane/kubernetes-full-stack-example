@@ -29,7 +29,7 @@ node {
     }
     stage('minikubestart'){
         sh 'minikube delete'
-        sh 'minikube start --driver=none --kubernetes-version v1.23.8'
+        sh 'minikube start --driver=none --kubernetes-version v1.24.8'
     }
     stage("prometheus"){
         sh 'helm repo add prometheus-community https://prometheus-community.github.io/helm-charts'
