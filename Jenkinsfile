@@ -27,6 +27,10 @@ node {
         }
         sh 'docker push ndthuong/student-app-client'
     }
+    stage('minikubestart'){
+        sh 'minikube delete'
+        sh 'minikube start --driver=none --kubernetes-version v1.23.8'
+    }
     stage("prometheus"){
         sh 'helm repo add prometheus-community https://prometheus-community.github.io/helm-charts'
         sh 'helm install prometheus prometheus-community/prometheus'
