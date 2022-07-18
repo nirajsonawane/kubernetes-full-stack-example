@@ -31,6 +31,5 @@ node {
         sh 'helm delete thuongapp'
         sh 'helm delete Prometheus'
         sh 'helm delete Grafana'
-        sh 'helm install thuongapp'
     }
 }
