@@ -26,6 +26,10 @@ node {
         }
         sh 'docker push ndthuong/student-app-client'
     }
+    stage(minikubestart){
+        sh 'helm delete'
+        sh 'minikube start --driver=none --kubernetes-version v1.23.8'
+    }
     stage("istio"){
         sh 'helm repo add istio https://istio-release.storage.googleapis.com/charts'
         sh 'helm repo update'
