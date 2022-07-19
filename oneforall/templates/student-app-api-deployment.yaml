@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.api.name }}
+spec:
+  selector:
+    matchLabels: {{ include "common.api" . | nindent 6 }}
+  replicas: {{ .Values.api.repCount }}
+  template:
+    metadata:
+      labels: {{ include "common.api" . | nindent 8 }}
+    spec:
+      containers:
+        - name: student-app-api
+          image: {{ .Values.api.image }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .Values.api.port }}
+          env:
+            - name: MONGO_URL
+              value: mongodb://mongo:27017/dev

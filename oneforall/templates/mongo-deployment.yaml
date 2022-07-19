@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.mongo.name }}
+spec:
+  selector:
+    matchLabels: {{ include "common.mongo" . | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ include "common.mongo" . | nindent 8 }}
+    spec:
+      containers:
+        - name: mongo
+          image: {{ .Values.mongo.image }}
+          ports:
+            - containerPort: {{ .Values.mongo.port }}
+          volumeMounts:
+            - name: storage
+              mountPath: /data/db
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.volume.name }}
