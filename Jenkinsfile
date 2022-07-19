@@ -32,7 +32,6 @@ node {
         sh 'kubectl create namespace istio-system'
         sh 'helm install istio-base istio/base -n istio-system'
         sh 'helm install istiod istio/istiod -n istio-system --wait'
-        sh 'kubectl create namespace istio-ingress'
         sh 'kubectl label namespace istio-ingress istio-injection=enabled'
         sh 'helm install istio-ingress istio/gateway -n istio-ingress -f dieuthuong.yaml'
     }
