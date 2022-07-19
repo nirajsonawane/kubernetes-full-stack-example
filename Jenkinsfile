@@ -48,6 +48,7 @@ node {
     stage("Deploy React application"){
         sh 'helm repo add helmchart https://github.com/NDThuong/poc2.git'
         sh 'helm repo update'
-        sh 'helm install thuongapp poc2/one'
+        sh 'helm install thuongapp poc2/oneforall'
+        sh 'minikube addons enable ingress'
     }
 }
