@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.client.name }}
+spec:
+  selector:
+    matchLabels: {{ include "common.client" . | nindent 6 }}
+  replicas: {{ .Values.client.repCount }}
+  template:   
+    metadata:
+      labels: {{ include "common.client" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}
+          image: {{ .Values.client.image }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .Values.client.port }}

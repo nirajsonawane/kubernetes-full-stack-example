@@ -12,13 +12,15 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: student-app-client-service
+              name: {{ .Values.client.name }}
               port:
-                number: 80
+                number: {{ .Values.client.port }}
         - path: /api/?(.*)
           pathType: Prefix
           backend:
             service:
-              name: student-app-api
+              name: {{ .Values.api.name}}
               port:
-                number: 8080
+                number: {{ .Values.api.port }}
+
+
