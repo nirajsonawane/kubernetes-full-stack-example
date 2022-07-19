@@ -45,4 +45,9 @@ node {
         sh 'helm install grafana bitnami/grafana'
         sh 'kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-np'
     }
+    stage("Deploy React application"){
+        sh 'helm repo add helmchart https://github.com/NDThuong/poc2.git'
+        sh 'helm repo update'
+        sh 'helm install thuongapp poc2/one'
+    }
 }
