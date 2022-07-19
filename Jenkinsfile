@@ -34,7 +34,6 @@ node {
         sh 'helm install istiod istio/istiod -n istio-system --wait'
         sh 'kubectl create namespace istio-ingress'
         sh 'kubectl label namespace istio-ingress istio-injection=enabled'
-        sh 'helm install istio-ingress istio/gateway -n istio-ingress dieuthuong.yaml'
     }
     stage("prometheus"){
         sh 'helm repo add prometheus-community https://prometheus-community.github.io/helm-charts'
