@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: student-app-api
-          image: nirajsonawane/student-app-api:0.0.1-SNAPSHOT
+          image: johnhunsley/student-app-api:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
