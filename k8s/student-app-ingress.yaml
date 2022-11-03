@@ -9,13 +9,18 @@ spec:
   - http:
       paths:
         - path: /?(.*)
+          pathType: Exact
           backend:
             service:
               name: student-app-client-service
-              port: 80
+              port:
+                number: 80
         - path: /api/?(.*)
+          pathType: Exact
           backend:
-            serviceName: student-app-api
-            servicePort: 8080
+            service:
+              name: student-app-api
+              port:
+                number: 8080
 
 

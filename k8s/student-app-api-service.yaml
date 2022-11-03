@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: student-app-api
 spec:
+  type: LoadBalancer
   selector:
     app: student-app-api
   ports:
