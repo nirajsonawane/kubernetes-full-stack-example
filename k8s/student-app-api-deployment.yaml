@@ -19,5 +19,8 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: MONGO_URL
-              value: mongodb://mongo:27017/dev
+            - name: SPRING_APPLICATION_PROPERTIES
+              valueFrom:
+                configMapKeyRef:
+                  name: student-app-api
+                  key: application.properties

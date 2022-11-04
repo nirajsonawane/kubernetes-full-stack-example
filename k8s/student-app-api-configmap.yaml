@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: student-app-api
+data:
+  application.properties: |-
+    springdoc.api-docs.path=/api-docs
+    spring.data.mongodb.uri=mongodb://mongo:27017/dev
